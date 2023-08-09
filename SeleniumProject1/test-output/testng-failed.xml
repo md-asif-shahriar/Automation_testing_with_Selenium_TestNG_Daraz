@@ -5,8 +5,8 @@
     <classes>
       <class name="selenium_testing_daraz.SeleniumAutomationDaraz">
         <methods>
+          <include name="verifyAddToCart"/>
           <include name="pre_condition"/>
-          <include name="verifyGoogleTitle"/>
           <include name="post_condition"/>
         </methods>
       </class> <!-- selenium_testing_daraz.SeleniumAutomationDaraz -->

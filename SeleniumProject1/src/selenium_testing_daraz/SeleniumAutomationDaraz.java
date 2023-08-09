@@ -1,9 +1,11 @@
 package selenium_testing_daraz;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -49,6 +51,7 @@ public class SeleniumAutomationDaraz {
 	public void verifyDarazHome() throws InterruptedException
 	{
 		//Go to daraz home
+		
 		driver.findElement(By.id("APjFqb")).sendKeys("daraz");
 		driver.findElement(By.name("btnK")).click();
 		driver.findElement(By.className("LC20lb")).click();
@@ -59,9 +62,12 @@ public class SeleniumAutomationDaraz {
 	public void verifySearchProduct() throws InterruptedException
 	{
 		//Search product on daraz
+		driver.navigate().to("https://www.daraz.com.bd/");
 		driver.findElement(By.id("q")).sendKeys("jisulife fan");
 		driver.findElement(By.cssSelector(".search-box__button--1oH7")).click();
-		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div/div[2]/div[2]/a")).click();
+		List<WebElement> fans = driver.findElements(By.className("box--ujueT"));
+		//Click on the first search result
+		fans.get(0).click();
 		Thread.sleep(2000);
 	}
 	
@@ -69,12 +75,13 @@ public class SeleniumAutomationDaraz {
 	public void verifyAddToCart() throws InterruptedException
 	{
 		//Add to cart
+		driver.navigate().to("https://www.daraz.com.bd/products/jisulife-fa29a-4000mah-i318273598-s1450731064.html?spm=a2a0e.searchlist.list.3.291e4bc4Yd2T5O&search=1");
 		driver.findElement(By.cssSelector(".add-to-cart-buy-now-btn")).click();
 		Thread.sleep(2000);
 	}
 	
 	@AfterMethod
 	public void post_condition() {
-		//driver.quit();
+		driver.quit();
 	}
 }
